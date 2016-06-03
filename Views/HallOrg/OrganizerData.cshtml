@@ -1,0 +1,58 @@
+﻿@model IEnumerable<MvcApplication4.Models.SubHall>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+    }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrganizerData</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+
+    <style>
+        .img {
+            width:150px;
+            height:150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <h2>Your Halls</h2><br />
+            @if (Model.Count() == 0)
+            {
+                <h4>you have not added any hall, for add your new hall click on 'Add New Hall'</h4>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div style="float: left; width: 150px; height: 200px; margin: 10px 10px 10px 10px;">
+                    <img src="@Url.Content(item.Image)" class="img" />
+                    </div>
+                    <h1>@item.Name</h1>
+                    <span style="font-weight:800">Capacity:</span> @item.Capacity <span>Peoples</span> <br />
+                    <span style="font-weight:800">Address:</span> @item.Address <br />
+                    <span style="font-weight:800">Contact:</span> @item.Phone <br />
+                    <span style="font-weight:800">Status:</span> @item.Status <br /><br />
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }) <br />
+                    @Html.ActionLink("Detail", "Detail", new { id = item.Id }) <br />
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) <br />
+                    <hr style="height:2px; background-color:black" />
+                }
+            }
+            </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <h2>Menu</h2><br />
+            <a href="~/HallOrg/AddHall">Add New Hall</a></div>
+        <div class="col-xs-1"></div>
+        </div>
+</body>
+</html>

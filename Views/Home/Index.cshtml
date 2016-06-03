@@ -1,0 +1,204 @@
+﻿@{
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index1</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#b1").on("click", function () {
+                var v = $("#t1").val();
+                $("#d1").html(v);
+                $.getJSON("/Home/Embeded")
+            });
+        });
+</script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-5">
+            <div class="row" style="height:350px">
+                 @*slider*@
+                <div style="float: left; width: 200px; height: 220px; margin: 10px 10px 10px 10px;">
+<div class="container" style="width:200px;height:210px">
+  <br>
+  <div id="myCarousel1" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" >
+      <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel1" data-slide-to="1"></li>
+      <li data-target="#myCarousel1" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <img src="~/Content/layoutImages/perfectMatch/1pf.jpg" style="width:200px;height:210px" />
+      </div>
+
+      <div class="item">
+          <img src="~/Content/layoutImages/perfectMatch/2pf.jpg" style="width:200px;height:210px" />
+      </div>
+    
+      <div class="item">
+        <img src="~/Content/layoutImages/perfectMatch/3pf.jpg" style="width:200px;height:210px" />
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel1" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div></div>
+                <br /><br /><a href="#">Click Here</a><br /><p>your online profile is just a starting point. It is impossible to precisely convey every detail about who you are and what you want in an online perfect match. It takes time to get to know someone. With your online profile, your profile’s purpose is simply to:
+1.	Attract a good-sized pool of potentially compatible matches.
+2.	Weed out the people who are probably bad matches for you
+</p>
+
+            </div>
+            <div class="row" style="height:30px"></div>
+            <div class="row">
+                @*shop*@
+                                  @*slider*@
+                <div style="float: left; width: 200px; height: 200px; margin: 10px 10px 10px 10px;">
+<div class="container" style="width:200px;height:200px">
+  <br>
+  <div id="myCarousel2" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" >
+      <li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel2" data-slide-to="1"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <img src="~/Content/layoutImages/shop/1shop.jpg" style="width:200px;height:210px" />
+      </div>
+
+      <div class="item">
+          <img src="~/Content/layoutImages/shop/2shop.jpg" style="width:200px;height:210px" />
+      </div>
+    
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div></div>
+                <br /><br /><a href="#">Click Here</a><br /><p>We are providing a dowry shopping as well. That , makes you easy to buy your things easily. A lots of branded companies sale their products on this wesite.</p>
+                 @*/shop*@
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-xs-5">
+             <div class="row">
+                @*mh*@
+                                  @*slider*@
+                 <div style="float: left; width: 200px; height: 220px; margin: 10px 10px 10px 10px;">
+<div class="container" style="width:200px;height:200px">
+  <br>
+  <div id="myCarousel3" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" >
+      <li data-target="#myCarousel3" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel3" data-slide-to="1"></li>
+      <li data-target="#myCarousel3" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <img src="~/Content/layoutImages/MarriageHall/1mh.jpg" style="width:200px;height:210px" />
+      </div>
+
+      <div class="item">
+          <img src="~/Content/layoutImages/MarriageHall/2mh.jpg" style="width:200px;height:210px" />
+      </div>
+    
+      <div class="item">
+          <img src="~/Content/layoutImages/MarriageHall/mh3.jpg" style="width:200px;height:210px" />
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel3" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel3" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div></div>
+                 <br /><br /><a href="#">Click Here</a><br /><p>Best Hall In ECR an Air-conditioned Royal Wedding Hall, is the perfect venue to make your dream Wedding, a reality. The marriages so far held at the have been totally unique, different and a most memorable experience for both the Bride's and the Groom's family and as well as ALL their guests, is one of the best wedding hall in ECR offers facilities at flexible rates, as per your requirement. We promise you a Grand Wedding, within your budget. Please come in person and discuss with us your plans and budget and we will make Your Family Wedding Function a GRAND SUCCESS. A visit to our wedding hall complex will convince you of the above facts.</p>
+                 @*/mh*@
+            </div>
+            <div class="row" style="height:30px"></div>
+            <div class="row">
+                @*tour*@
+                                 @*slider*@
+                <div style="float: left; width: 200px; height: 200px; margin: 10px 10px 10px 10px;">
+<div class="container" style="width:200px;height:200px">
+  <br>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators" >
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+          <img src="~/Content/layoutImages/tour/1tour.jpg" style="width:200px;height:210px" />
+      </div>
+
+      <div class="item">
+          <img src="~/Content/layoutImages/tour/2tour.jpg" style="width:200px;height:210px" />
+      </div>
+    
+      <div class="item">
+          <img src="~/Content/layoutImages/tour/3tour.jpg" style="width:200px;height:210px" />
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+</div></div>
+                <br /><br /><a href="#">Click Here</a><p>Here , you find the best and less costly tour. We provide some discount on some tour. That, makes your honeymoon lovely and excited.</p>
+                @*tour/*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>

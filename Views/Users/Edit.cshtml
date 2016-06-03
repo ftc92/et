@@ -1,0 +1,125 @@
+﻿    @model MvcApplication4.Models.User
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Create</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <style>
+        .set {
+            width:100%;
+        }
+        .set2 {
+            width:40%
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <h2>Edit Your Profile</h2><br />
+            <form action="~/Users/Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="Image" value="@Model.Image" />
+                <input type="hidden" name="email" value="@Model.email" />
+            <span style="font-weight:800">Profile Picture: </span><input type="file" name="File2" /><br /><br />
+            <input type="text" placeholder="Enter your Name" name="Name" required class="set" value="@Model.Name" /><br /><br />
+            <span style="font-weight:800">Age:</span><br /><input type="number" name="age" required class="set2" value="@Model.age" /><br /><br />
+                <span style="font-weight:800">Gender: </span><br />
+        <select id="gender" name="gender" required class="set2">
+
+
+
+            <option value="male">male</option>
+            <option value="female">female</option>
+          
+            
+
+        </select><br /><br />
+
+        <span style="font-weight:800">Caste: </span><br />
+
+        <select id="cast" name="cast" required class="set2">
+
+            
+
+            <option value="Arain">Arain</option>
+            <option value="Butt">Butt</option>
+            <option value="Baig">Baig</option>
+            <option value="Baloch">Baloch</option>
+            <option value="Gujjar">Gujjar</option>
+            <option value="Jutt">Jutt</option>
+            <option value="Kashmiri">Kashmiri</option>
+            <option value="Khakwani">Khakwani</option>
+            <option value="Kharral">Kharral</option>
+            <option value="Malik">Malik</option>
+            <option value="Mughal">Mughal</option>
+            <option value="Rajput">Rajput</option>
+            <option value="Qureshi">Qureshi</option>
+            <option value="Syed">Syed</option>
+            <option value="Sheikh">Sheikh</option>
+            <option value="Siddique">Siddique</option>
+            <option value="Somro">Somro</option>
+            <option value="Rao">Rao</option>
+            <option value="Khan">Khan</option>
+            <option value="Other">Other</option>
+
+
+            </select><br /><br />
+        
+
+        <span style="font-weight:800">Qualification: </span><br />
+        <select id="qualification" name="qualification" required class="set2">
+
+
+
+            <option value="primary">primary</option>
+            <option value="middle">middle</option>
+            <option value="ssc">ssc</option>
+            <option value="hsc">hsc</option>
+            <option value="intermediate">intermediate</option>
+            <option value="undergraduate">undergraduate</option>
+            <option value="other">other</option>
+
+        </select><br /><br />
+
+
+        <input type="text" name="cnic" placeholder="CNIC No." required class="set" value="@Model.cnic" /><br /><br />
+
+        <input type="text" placeholder="Address" name="address" required class="set" value="@Model.address" /><br /><br />
+
+        <span style="font-weight:800">Work: </span><br />
+        
+
+        <select id="work" name="work" required class="set2">
+            <option value="Business">Business</option>
+            <option value="Job">Job</option>
+            <option value="other">other</option>
+
+
+        </select><br /><br />
+        <span style="font-weight:800">Enter Income in PKR: </span>
+            <input type="number" name="income" required value="@Model.income" /><br /><br />
+
+        <input type="text" placeholder="Cell No." name="cell" required class="set" value="@Model.cell" /><br /><br />
+
+        
+            <input type="submit" value="Update" /><br /><br />
+    </form>
+        @Html.ActionLink("Back to Profile", "Index")
+            </div>
+        <div class="col-md-3"></div>
+        </div>
+</body>
+</html>

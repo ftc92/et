@@ -1,0 +1,108 @@
+﻿@model IEnumerable<object>
+
+@{
+    List<MvcApplication4.Models.Country> listCountry = Model.ToList()[1] as List<MvcApplication4.Models.Country>;
+    List<MvcApplication4.Models.OrganazirProfile> listOrganizer = Model.ToList()[0] as List<MvcApplication4.Models.OrganazirProfile>;
+    List<MvcApplication4.Models.RequestInfo> listRequestInfo = Model.ToList()[2] as List<MvcApplication4.Models.RequestInfo>;
+    //List<MvcApplication4.Models.ResponseRequest> listRespose = Model.ToList()[3] as List<MvcApplication4.Models.ResponseRequest>;
+}
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    
+    
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <title>User_Login</title>
+     <script>
+         $(document).ready(function () {
+             $('[data-toggle="tooltip"]').tooltip();
+         });
+</script>
+
+    <style>
+        .myimg{
+            width:200px;
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+    
+    @*<a href="~/Child/Logout">Logout</a> <a href="@Url.Action("ManageAccount","Child")" data-toggle="tooltip">Account</a> <a class="glyphicon glyphicon-envelope" href="@Url.Action("Notifications_Responses","Child")">@(listRespose.Count())</a>
+    *@
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6" style="margin-top:5%">
+            <h3 style="color:green">@TempData["ReqMsg"]</h3><br />
+            <table>
+            @{
+                if (listOrganizer.Count() == 0)
+                {
+                    <tr>
+                        <td>
+                    <p>No organizer has since been added a profile</p></td>
+                        </tr>
+                }
+                else
+                {
+
+                    foreach (var i in listOrganizer)
+                    {
+                    <tr>
+                      <td>
+                          
+                            
+                          <img src="@Url.Content(i.img)" class="myimg" /><br />
+                              <label>Name:</label>
+                              @i.name<br />
+                              <label>Phone:</label>
+                              @i.phone<br />
+                            
+                              <label>Company Name:</label>
+                              @i.company<br />
+                          
+                          @if (listCountry.Count() == 0)
+                          {
+                              <script>
+                                  $("#p1").text("No Places:");
+                              </script>
+                          }
+                          
+                          else{
+                              <select style="width:200px">
+                                  <option value="">Servicing Areas</option>
+                                  @foreach (var j in listCountry)
+                                  {
+                                      if (@i.phone == @j.Org_name)
+                                      {
+                                          <option>@j.country1</option>
+                                      }
+                                  }
+                             </select>
+                          }
+                          
+                          @Html.ActionLink("Request", "Request_Handling", new { phone = i.phone })
+                          
+                          <p>____________________________________________________</p>
+                          
+                      </td>
+                  </tr>
+                    }
+                }
+                }
+            
+                </table>
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+</body>
+</html>

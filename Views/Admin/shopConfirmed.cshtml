@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MvcApplication4.Models.ShopAdmin>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>shopConfirmed</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h1>Shopping Organizer</h1><br />
+            @if (Model.Count() == 0)
+            {
+                <p>No any Shopping organizer</p>
+            }
+            else
+            {
+            <table border="1">
+                <tr>
+                    <td><label>Shop Name</label></td>
+                    <td><label>Category</label></td>
+                    <td><label>Email</label></td>
+                    <td><label>Password</label></td>
+                    <td><label>Address</label></td>
+                    <td><label>Phone</label></td>
+                    <td><label>Action</label></td>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.shopName</td>
+                        <td>@item.category</td>
+                        <td>@item.username</td>
+                        <td>@item.password</td>
+                        <td>@item.address</td>
+                        <td>@item.phone</td>
+                        <td>
+                            <a href="~/Admin/shopconDelete?id=@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            }
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+</body>
+</html>

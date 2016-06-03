@@ -1,0 +1,235 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>bandbaja.com</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.8.20.min.js"></script>
+    <link href="~/Content/dropDownList.css" rel="stylesheet" />
+  <style>
+      .carousel-inner > .item > img,
+      .carousel-inner > .item > a > img {
+          width: 70%;
+          margin: auto;
+      }
+      #background {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          min-width: 100%;
+          min-height: 100%;
+          width: auto;
+          height: auto;
+          z-index: -100;
+          -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
+          background: url(polina.jpg) no-repeat;
+          background-size: cover;
+          opacity: 0.6;
+          filter: alpha(opacity=80);
+      }
+
+  </style>
+    <script>
+        $(document).ready(function () {
+            $('.dropdown-toggle').dropdown();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#b1").on("click", function () {
+                var f = true;
+                var v1 = $("#s1").val();
+                var v2 = $("#s2").val();
+                if (v1 > v2) {
+                    f = false
+                    alert("Please Enter Correct Values of minimum salary and maximum salary");
+                }
+                return f;
+            });
+        });
+
+        $(document).ready(function () {
+            $("#b2").on("click", function () {
+                var f = true;
+                var v1 = $("#a1").val();
+                var v2 = $("#a2").val();
+                if (v1 > v2) {
+                    f = false
+                    alert("Please Enter Correct Values of minimum Age and maximum Age");
+                }
+                return f;
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1"></div>
+            <div class="col-md-10">
+    <div>
+   <nav class="navbar navbar-inverse" role="navigation" style="background-color:black">
+       <div class="navbar-header">
+           <img src="~/Content/logoweb.jpg" style="width:150px; height:140px" />
+       </div>
+       <ul class="nav navbar-nav pull-right pull-bottom">
+           @if(Session["cname"] != null)
+           {
+              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">@Session["cname"]<span class="caret"></span></a>
+                  <ul class="dropdown-menu nav">
+                      <li><a href="~/Home/AccountSetting"><span class="glyphicon glyphicon-wrench"></span> Account Setting</a></li>
+                      <li><a href="~/Home/CustomerSignOut"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+                  </ul>
+              </li>
+               if (Session["msg"] == null)
+               {
+                   Session["msg"] = 0;
+               }
+               <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope">(@Session["msg"])</span></a></li>
+           }
+           else if(Session["uname"] != null)
+           {
+               <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">@Session["uname"]<span class="caret"></span></a>
+                  <ul class="dropdown-menu nav">
+                      <li><a href="~/Home/AccountSetting"><span class="glyphicon glyphicon-wrench"></span> Account Setting</a></li>
+                      <li><a href="~/ShopHome/SignOut"><span class="glyphicon glyphicon-user"></span> Sign Out</a></li>
+                  </ul>
+              </li>
+               if (Session["msg"] == null)
+               {
+                   Session["msg"] = 0;
+               }
+               <li><a href="~/Home/Messages"><span class="glyphicon glyphicon-envelope">(@Session["msg"])</span></a></li>
+           }
+           else
+           {
+              <li>@*@Html.ActionLink("SignUp/Login", "CustomerSignUp", new {signType = "homePage"})*@
+                  <a href="~/Home/CustomerSignUp?signType=homePage">SignUp/Login</a>
+              </li>
+           }
+          </ul>
+   </nav>
+        </div>
+
+                @*Menubar*@
+
+    <div style="margin-top:0px">
+    <nav class="navbar navbar-inverse ">
+  <div class="container-fluid">
+    @*<div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>*@
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="~/Home/Index">Home</a></li>
+      <li><a href="~/Users/Index">Create Profile for Perfect Match</a></li>
+        @**@
+        <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                Search Profiles <span class="caret"></span>
+            </a>
+    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <li class="divider"></li>
+              <li class="dropdown-submenu">
+                <a tabindex="-1" href="#">By Caste</a>
+                <ul class="dropdown-menu">
+                  
+                  <li>@Html.ActionLink("Mughal", "SearchbyCaste", "Users", new { cst = "Mughal" }, null)</li>
+                  <li>@Html.ActionLink("Jutt", "SearchbyCaste", "Users", new { cst = "Jutt" }, null)</li>
+                    <li>@Html.ActionLink("Malik", "SearchbyCaste", "Users", new { cst = "Malik" }, null)</li>
+                    <li>@Html.ActionLink("Baig", "SearchbyCaste", "Users", new { cst = "Baig" }, null)</li>
+                    <li>@Html.ActionLink("Arain", "SearchbyCaste", "Users", new { cst = "Arain" }, null)</li>
+                    <li>@Html.ActionLink("Baloch", "SearchbyCaste", "Users", new { cst = "Baloch" }, null)</li>
+                    <li>@Html.ActionLink("Gujjar", "SearchbyCaste", "Users", new { cst = "Gujjar" }, null)</li>
+                    <li>@Html.ActionLink("Khakwani", "SearchbyCaste", "Users", new { cst = "Khakwani" }, null)</li>
+                    <li>@Html.ActionLink("Kharral", "SearchbyCaste", "Users", new { cst = "Kharral" }, null)</li>
+                    <li>@Html.ActionLink("Rajput", "SearchbyCaste", "Users", new { cst = "Rajput" }, null)</li>
+                    <li>@Html.ActionLink("Qureshi", "SearchbyCaste", "Users", new { cst = "Qureshi" }, null)</li>
+                    <li>@Html.ActionLink("Syed", "SearchbyCaste", "Users", new { cst = "Syed" }, null)</li>
+                    <li>@Html.ActionLink("Sheikh", "SearchbyCaste", "Users", new { cst = "Sheikh" }, null)</li>
+                    <li>@Html.ActionLink("Siddique", "SearchbyCaste", "Users", new { cst = "Siddique" }, null)</li>
+                    <li>@Html.ActionLink("Somro", "SearchbyCaste", "Users", new { cst = "Somro" }, null)</li>
+                    <li>@Html.ActionLink("Rao", "SearchbyCaste", "Users", new { cst = "Rao" }, null)</li>
+                    <li>@Html.ActionLink("Khan", "SearchbyCaste", "Users", new { cst = "Khan" }, null)</li>
+                    <li>@Html.ActionLink("Others", "SearchbyCaste", "Users", new { cst = "Others" }, null)</li>
+                    
+                </ul>
+              </li>
+
+                <li class="dropdown-submenu">
+                <a tabindex="-1">By Qualification</a>
+                <ul class="dropdown-menu">
+                    <li>@Html.ActionLink("Primary", "SearchbyQual", "Users", new { qul = "primary" }, null)</li>
+                    <li>@Html.ActionLink("Middle", "SearchbyQual", "Users", new { qul = "middle" }, null)</li>
+                    <li>@Html.ActionLink("SSC", "SearchbyQual", "Users", new { qul = "ssc" }, null)</li>
+                    <li>@Html.ActionLink("HSC", "SearchbyQual", "Users", new { qul = "hsc" }, null)</li>
+                    <li>@Html.ActionLink("Intermediate", "SearchbyQual", "Users", new { qul = "intermediate" }, null)</li>
+                    <li>@Html.ActionLink("Undergraduate", "SearchbyQual", "Users", new { qul = "undergraduate" }, null)</li>
+                    <li>@Html.ActionLink("Other", "SearchbyQual", "Users", new { qul = "other" }, null)</li>
+                    </ul>
+                </li>
+
+                <li class="dropdown-submenu">
+                <a tabindex="-1">By Income</a>
+                <ul class="dropdown-menu">
+                  <li>
+                      <form method="post" action="~/Users/SearchbyIncome">
+                      Min-<input type="text" id="s1" placeholder="E.g: 30000" name="minSal" required /><br /><br />
+                      Max-<input type="text" id="s2" placeholder="E.g: 30000" name="maxSal" required /><br /><br />
+                      <input type="submit" id="b1" value="search" />
+                      </form>
+                  </li>
+                </ul>
+                </li>
+
+              <li class="dropdown-submenu">
+                <a tabindex="-1">By Age</a>
+                <ul class="dropdown-menu">
+                  <li>
+                      <form method="post" action="~/Users/SearchbyAge">
+                      Min-<input type="text" placeholder="E.g: 22" id="a1" name="minAge" required /><br /><br />
+                      Max-<input type="text" placeholder="E.g: 30" id="a2" name="maxAge" required /><br /><br />
+                      <input type="submit" id="b2" value="search" />
+                      </form>
+                  </li>
+                </ul>
+                </li>
+
+            </ul>
+        </li>
+        @**@
+      <li><a href="~/MarriageHalls/Index">Marraige Halls</a></li> 
+      <li><a href="~/Dowry/All_Items">Dowry Shopping</a></li>
+      <li><a href="~/Child/User_Login">Tour Managing</a></li> 
+        <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Wedding Organizers
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu nav">
+          <li><a href="~/ShopHome/Index">Shopping Organizers</a></li>
+          <li><a href="~/HallOrg/Index">Marriage Hall Organizers</a></li>
+          <li><a href="~/TourHome/Index">Tour Managing Organizers</a></li> 
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+        </div>
+
+                @*slider*@
+
+                <div style="margin-top:5%">
+            @RenderBody();
+        </div>
+</div>
+        <div class="col-xs-1"></div>
+        </div>
+</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+</html>
+

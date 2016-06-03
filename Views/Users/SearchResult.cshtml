@@ -1,0 +1,50 @@
+﻿@model IEnumerable<MvcApplication4.Models.User>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>SearchResult</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h1>Search Results</h1>
+            <br />
+            @if (Model.Count() == 0)
+            {
+                <h3>Sorry we have no data for this search now, please try later</h3>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div style="width:200px;height:200px">
+                        <img src="@Url.Content(item.Image)" style="width:200px; height:200px" /><br />
+                    </div>
+                    <span style="font-weight:700">Name: </span>           @item.Name <br />
+                    <span style="font-weight:700">Gender: </span>         @item.gender <br />
+                    <span style="font-weight:700">Age: </span>            @item.age <span>years</span><br />
+                    <span style="font-weight:700">Caste: </span>          @item.cast <br />
+                    <span style="font-weight:700">Address: </span>        @item.address <br />
+                    <span style="font-weight:700">Qualification: </span>  @item.qualification <br />
+                    <span style="font-weight:700">Work: </span>           @item.work <br />
+                    <span style="font-weight:700">Income: </span>         @item.income <br />
+                    <span style="font-weight:700">Cell No.:</span>        @item.cell <br />
+                    <span style="font-weight:700">CNIC No.:</span>        @item.cnic <br /><br />
+                    <hr style="background-color:black; height:2px" />
+                }
+            }
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+</body>
+</html>

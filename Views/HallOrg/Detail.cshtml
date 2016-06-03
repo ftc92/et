@@ -1,0 +1,105 @@
+﻿@model MvcApplication4.Models.SubHall
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>@Model.Name</h2><br />
+                     <img src="@Url.Content(Model.Image)" style="width:150px;height:150px" /><br />
+                     <span style="font-weight:800">Name: </span> @Model.Name <br />
+                     <span style="font-weight:800">Capacity: </span> @Model.Capacity <span>Peoples</span> <br />
+                     <span style="font-weight:800">Address: </span> @Model.Address <br />
+                     <span style="font-weight:800">Phone: </span> @Model.Phone <br /><br />
+                     <span style="font-weight:800">Status:</span> @Model.Status <br />
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-xs-5">
+                    <h2>Your Hall's Promotions</h2><br />
+                    @if (ViewBag.pcount == 0)
+                    {
+                        <h4>Hall has no new promotion</h4>
+                        <h4>for ADD promotion...click on 'Add New Promotion'</h4>
+                    }
+                    else
+                    {
+                        foreach (var item in ViewBag.plist)
+                        {
+                            <h3>@item.Name</h3>
+                            <p>@item.Desc</p>
+                            <a href="~/Promotion/Delete?id=@item.Id">Delete Promotion</a> <br />
+                            <hr style="height:2px; background-color:black" />
+                        }
+                    }
+                </div>
+            </div>
+            <hr style="height:2px; background-color:black" />
+            <div>
+            <h2>Your Hall's Videos</h2><br />
+                
+            @if (ViewBag.vcount == 0)
+            {
+                <h4>Hall has no any Video</h4>
+                <h4>for Embbed Video code...click on 'Add New Video'</h4>
+            }
+            else
+            {
+                foreach (var item in ViewBag.vlist)
+                {
+                    
+                    <h3>@item.Name</h3>
+                    @Url.Content(item.Link) <br />
+                    <a href="~/Video/Delete?id=@item.Id">Delete this video</a> <br /><br />
+                }
+            }
+           </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+            <h2>Menu</h2><br />
+            <div style="border-style:groove; width:100%; height:30%" class="row">
+                <div class="col-md-1"></div>
+                <div class="col-xs-11">
+                    <h4>Add new Promotion</h4>
+                <form action="~/Promotion/AddPromotion" method="post">
+                    <input type="text" name="Name" placeholder="Promotion Name" style="width:110%" required /><br /><br />
+                    <input type="text" name="Desc" placeholder="Description" style="width:110%" required /><br /><br />
+                    <input type="hidden" name="SubHallId" value="@Model.Id" />
+                    <input type="submit" value="Add"/>
+                </form>
+                </div>
+            </div><br />
+
+            <div style="border-style:groove; width:100%; height:30%" class="row">
+                <div class="col-md-1"></div>
+                <div class="col-xs-11">
+                    <h4>Add new Video</h4>
+                <form action="~/Video/AddVideo" method="post">
+                    <input type="text" name="Name" placeholder="Video Name" style="width:110%" required /><br /><br />
+                    <input type="text" name="Link" placeholder="Embed your code" style="width:110%" required /><br /><br />
+                    <input type="hidden" name="SubHallId" value="@Model.Id" />
+                    <input type="submit" value="Embed"/>
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</body>
+</html>

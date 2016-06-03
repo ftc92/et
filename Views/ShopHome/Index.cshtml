@@ -1,0 +1,93 @@
+﻿@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Content/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .set {
+            width: 100%;
+        }
+        #p1 {
+            color:red;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#sub1").on("click", function () {
+                var a = $("#pwd").val();
+                var b = $("#repwd").val();
+                var bool = true;
+                if (a != b) {
+                    $("#p1").text("Password not match");
+                    bool = false;
+                }
+                return bool;
+            });
+        });
+
+        
+    </script>
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+ </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-3">
+            <form action="~/ShopHome/Signup" method="post">
+            <h1>Registration</h1><br />
+            <input type="text" placeholder="Enter Shop Name" name="shopName" class="set" required /><br /><br />
+            Category: 
+            <select name="category">
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <option value="crockery">Crockery</option>
+                <option value="clothes">Dress</option>
+                <option value="other">other</option>
+            </select><br /><br />
+            <input type="text" placeholder="First Name" name="fname" class="set" required /><br /><br />
+            <input type="text" placeholder="Last Name" name="lname" class="set"  required /><br /><br />
+            <input type="email" placeholder="Email" id="em" name="username" class="set" required /><br /><span style="color:red">@TempData["ErrShopSignup"]</span><br />
+            <input type="password" placeholder="Password" id="pwd" name="password" class="set"  required /><br /><br />
+            <input type="password" placeholder="Re-Enter Password" id="repwd" class="set" required /><p id="p1"></p><br /><br />
+            <input type="text" placeholder="Shop Address" name="address" class="set" required /><br /><br />
+            <input type="text" placeholder="Phone No." name="phone" class="set" required /><br /><br />
+            <input type="text" placeholder="CNIC No." name="cnic" class="set" required /><br /><br />
+            <input type="submit" id="sub1" value="Signup" />
+            </form>
+        </div>
+
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-3">
+            <h1>Log in</h1><br />
+            <form action="~/ShopHome/SignIn" method="post">
+            <input type="text" placeholder="Username" name="username" class="set" required /><br /><br />
+            <input type="password" placeholder="Password" name="password" class="set" required /><br /><span style="color:red">@TempData["ErrShopLogin"]</span><br />
+            <input type="submit" value="Login" />
+            </form>
+        </div>
+
+        <div class="col-xs-2">
+        </div>
+    </div>
+</body>
+</html>

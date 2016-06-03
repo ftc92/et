@@ -1,0 +1,158 @@
+﻿@model IEnumerable<object>
+
+
+@{
+    List<MvcApplication4.Models.Country> listCountry = Model.ToList()[0] as List<MvcApplication4.Models.Country>;
+    List<MvcApplication4.Models.OrganazirProfile> listOrganizer = Model.ToList()[1] as List<MvcApplication4.Models.OrganazirProfile>;
+    List<MvcApplication4.Models.RequestInfo> listRequest = Model.ToList()[2] as List<MvcApplication4.Models.RequestInfo>;
+    
+    
+}
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    @*<p>@Session["name"]</p>
+    <p>@Session["phNo"]</p>
+    *@
+    
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+  
+    <title>Login</title>
+    
+    <style>
+        .myimg {
+            width:200px;
+            height:200px;
+        }
+        #dv {
+           
+        }
+    </style>
+    
+</head>
+    
+<body>
+    
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+</script>
+
+    
+    
+   @*<div id="dv1" class="nav" style="width:100%;background-color:black;color:blue;height:40%">
+       <a href="@Url.Action("Logout","Home")" data-toggle="tooltip" data-placement="left" title="Logout">Logout</a> <a href="@Url.Action("AddMore","Home")">|Manage Places</a> <a href="@Url.Action("Notification","Home")" id="hrf">|Notification<p id="p3"></p></a> <a href="@Url.Action("EditAccount","Home")">|Account</a>
+   </div>*@
+    <div class="row">
+        <div class="col-sm-3">
+            
+            
+        </div>
+        <div class="col-sm-5" style="margin:20px">
+            
+            <script>
+                $(document).ready(function () {
+                    
+                });
+            </script>
+           
+      <table>
+          
+          @{
+             if (listRequest.Count() > 0){
+                 
+                 
+              <tr>
+                  <td>
+                      <style>
+                          #hrf {
+                              color:darksalmon;
+                          }
+                      </style>
+                   
+                  </td>
+              </tr>
+          }
+          }          
+          @{
+              
+            if(listOrganizer.Count()==0){
+                
+                <tr>
+                    <td>
+                <h3>Please Create You Profile First by Clicking<a href="~/TourHome/signup">Create Your Profile First</a> </h3>
+                        </td>
+                    </tr>
+            }
+            
+                else{
+        
+              foreach(var i in listOrganizer)
+              {
+                  
+                  <tr>
+                      <td>
+                          
+                          <a href="~/TourHome/Editable" data-toggle="tooltip" title="Click to update these informations">
+                            
+                          <img src="@Url.Content(i.img)" class="myimg" /><br />
+                              @Html.Label("Name:") 
+                              @i.name<br />
+                              @Html.Label("Phone:")
+                              @i.phone<br />
+                             @* <label >Services Country:</label>
+                              @i.country<br />*@
+                              @Html.Label("Company:") 
+                              @i.company<br />
+                       
+                              
+                              </a>
+                          
+                          <pre><label>Servicing Areas:</label><p id="p1"></p></pre>
+                          @if(listCountry.Count()==0){
+                              <script>
+                                  $("#p1").text("No Place");
+                              </script>
+                          }
+                          
+                          else
+                          {
+                              <select style="width:200px">
+                                  <option value="">Servicing Areas</option>
+                              @foreach(var j in listCountry){
+                                    <option>@j.country1</option>  
+                              }
+                              </select>
+                          }
+                      </td>
+                  </tr>
+                      
+
+                      
+              
+              }
+              
+          }
+          }
+          
+      </table>
+           
+        </div>
+        <div class="col-sm-3" >
+            
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+</body>
+</html>

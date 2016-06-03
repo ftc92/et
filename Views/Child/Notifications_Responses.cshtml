@@ -1,0 +1,69 @@
+﻿@model List<MvcApplication4.Models.ResponseRequest>
+@{
+    ViewBag.Title = "Notifications_Responses";
+}
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<style>
+    label {
+        color:blue;
+    }
+</style>
+<script>
+    $(document).ready(function () {
+        $("Label").popover();
+    });
+</script>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="margin-top:10%">
+        <table>
+        @{
+            if(Model.Count()==0){
+                <tr>
+                    <td>
+                <h1>No Response to your request since been recieved</h1>
+                        </td>
+                    </tr>
+            }
+            else{
+                foreach(var i in Model)
+                {
+                    <tr>
+                        <td>
+                            @*<div class="container">*@
+                                <div class="offset6 span6 well">
+                                
+                                    <label class="lead" data-toggle="tooltip" title="Your Email or phone number" >Your Phone or email Address</label>
+                                @i.user_phone<br /><br />
+                                    <label class="lead"data-toggle="tooltip" title="Organizer's Phone or email Address">Organizer's Phone or email Address</label>
+                                
+                                @i.org_phone<br /><br />
+                                    <label class="lead" data-toggle="tooltip" title="Your Required Response Period was">Your Required Response Period was:</label>
+                                
+                                From:@i.start_date
+                                To:  @i.end_date<br /><br />
+                                    <label class="lead" data-toggle="tooltip" title="Organizer's Response Time is">Organizer's Response Time is:</label>
+                                @i.time_date<br /><br />
+                                    <label class="lead" data-toggle="tooltip" title="Today's Date">Today's Date is:</label>
+                                @DateTime.Now<br /><br />
+                                    <label class="lead" data-toggle="tooltip" title="Organizer's Remarks">Organizer's Remarks:</label>
+                                <blockquote>
+                                @i.description
+                                    </blockquote>
+                                    <label class="lead">Conveyance is:</label>
+                                    @i.conveyance
+                                    </div>
+                            @*</div>*@
+                        </td>
+                    </tr>
+            
+                }
+            }
+        }
+            </table>
+    </div>
+</div>

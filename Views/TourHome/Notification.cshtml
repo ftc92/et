@@ -1,0 +1,92 @@
+﻿@model List<MvcApplication4.Models.RequestInfo>
+@*@model IEnumerable<object>*@
+@{
+    //List<tourmanagment.Models.RequestInfo> listtRequestInfo = Model.ToList()[0] as List<tourmanagment.Models.RequestInfo>;
+    //List<tourmanagment.Models.ResponseRequest> listresponse = Model.ToList()[1] as List<tourmanagment.Models.ResponseRequest>;
+}    
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+    }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <title>Notification</title>
+    <style>
+        .clr {
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    
+                            
+    <div class="row">
+        <div class="col-sm-4" style="margin-left:50px;margin-top:30px"><a href="~/TourHome/Login">Profile</a></div>
+        <div class="col-sm-4" style="margin-top:100px;">
+            <table>
+            @{
+                if(Model.Count()==0){
+                    <tr>
+                        <td>
+                    <h1>You Don't Have any Notification</h1>
+                </td>
+                </tr>
+                }
+                else{
+                    foreach(var i in Model){
+                       if(@i.path==null){
+                        
+                        <tr>
+                            <td>
+                                <p>CNIC:@i.cnic</p>
+                        <p>Phone:@i.user_phone</p>
+                <p>Total Members:@i.members</p>
+                <p>Sent Date:@i.current_date</p>
+                <h3>Time Period:</h3>
+                <p>From: @i.start_date</p>
+                <p>To: @i.end_date</p>
+                                <p>Place To Go:@i.place</p>
+                                
+                                <p class="btn btn-danger" style="width:33%" >@Html.ActionLink("Ignore","Ignore",new{Cnic=i.cnic})</p>  <p class="btn btn-success"> @Html.ActionLink("Response", "Response_Request", new { Cnic = i.cnic,user_phone=i.user_phone })</p>
+                                
+                <p>__________________________________</p>
+                                </td>
+                            </tr>
+            
+            }
+                        else 
+                        {
+                            <tr>
+                            <td>
+                                <p>CNIC:@i.cnic</p>
+                        <p>Phone:@i.user_phone</p>
+                <p>Total Members:@i.members</p>
+                <p>Sent Date:@i.current_date</p>
+                <h4>Time Period:</h4>
+                <p>From: @i.start_date</p>
+                <p>To: @i.end_date</p><br />
+                                <h4>Place To Go:</h4><p>@i.place</p>
+                                
+                                <p class="btn btn-danger"> @Html.ActionLink("Delete", "Ignore", new { Cnic = i.cnic,user_phone=i.user_phone })</p> <a class="btn btn-success">Responded</a> <p class="btn btn-info">@Html.ActionLink("Update Response", "Response_Update", new { Cnic = i.cnic,user_phone=i.user_phone })</p>
+                                
+                <p>__________________________________</p>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            }
+            </table>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+</body>
+</html>

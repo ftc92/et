@@ -1,0 +1,196 @@
+﻿@model MvcApplication4.Models.SubHall
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            var v = '@Request.RequestContext.HttpContext.Session["cname"]';
+            
+            if (v == "") {
+                $("#bookDiv").hide();
+                $("#loginDiv").show();
+                $("#SignDiv").hide();
+            }
+            else {
+                $("#bookDiv").show();
+                $("#loginDiv").hide();
+                $("#SignDiv").hide();
+            }
+
+        });
+
+        $(document).ready(function () {
+            $("#btnSign2").on("click", function () {
+                $("#loginDiv").hide();
+                $("#SignDiv").show();
+            });
+        });
+
+        $(document).ready(function () {
+            $("#bt1").on("click", function () {
+                
+                var f = true;
+                var p = $("#peop").val();
+                
+                if (p < 1) {
+                    f = false;
+                    $("#peop1").text("Enter correct value");
+                }
+                return f;
+            });
+        });
+
+        $(document).ready(function () {
+            $("#bsign").on("click", function () {
+
+                var f = true;
+                var v = $("#pwd").val();
+                var u = $("#repwd").val();
+
+                if (v != u) {
+                    f = false;
+                    $("#p2").text("Password not match");
+                }
+                return f;
+            });
+        });
+    </script>
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1">
+            <a href="~/MarriageHalls/Detail?id=@Model.OrgId"><-Back</a>
+        </div>
+        <div class="col-md-7">
+            <div class="row">
+                <h3><span style="color:red">@TempData["ErrorSignupFirst"]</span></h3>
+                <div class="col-md-6">
+                    
+                    <h2>@Model.Name</h2><br />
+                     <img src="@Url.Content(Model.Image)" style="width:150px;height:150px" /><br />
+                     <span style="font-weight:800">Name: </span> @Model.Name <br />
+                     <span style="font-weight:800">Capacity: </span> @Model.Capacity <span>Peoples</span> <br />
+                     
+                     <span style="font-weight:800">Address: </span> @Model.Address <br />
+                     <span style="font-weight:800">Phone: </span> @Model.Phone <br />
+                     <span style="font-weight:800">Status: </span> @Model.Status <br /><br />
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-xs-5">
+                    <h2>Promotions</h2><br />
+                    @if (ViewBag.pcount == 0)
+                    {
+                        <h4>Hall has no new promotion Now</h4>
+                        
+                    }
+                    else
+                    {
+                        foreach (var item in ViewBag.plist)
+                        {
+                            <h3>@item.Name</h3>
+                            <p>@item.Desc</p>
+                            <hr style="height:2px; background-color:black" />
+                        }
+                    }
+                </div>
+            </div>
+            <hr style="height:2px; background-color:black" />
+            <div>
+            <h2> Hall's Videos</h2><br />
+                
+            @if (ViewBag.vcount == 0)
+            {
+                <h4>Hall has no any Video Now</h4>
+            }
+            else
+            {
+                foreach (var item in ViewBag.vlist)
+                {
+                    
+                    <h3>@item.Name</h3>
+                    @Url.Content(item.Link) <br />
+                    <br />
+                }
+            }
+           </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-xs-3">
+            <h2>Menu</h2><br />
+            <div id="bookDiv">
+            <div style="border-style:groove; width:100%; height:30%" class="row">
+                <div class="col-md-1"></div>
+                <div class="col-xs-11">
+                    
+                    <h2>Booking Here</h2>
+                <form action="~/MarriageHalls/Booking" method="post">
+                    <input type="text" name="CusName" placeholder="Your Name" style="width:110%" required /><br /><br />
+                    <span>Number of Peoples</span><input type="number" id="peop" name="Peoples" required style="width:110%" /><br /><p style="color:red" id="peop1"></p><span style="color:red">@TempData["peopleErr"]</span><br />
+                    <span>Date for Booking</span><input type="date" id="dat" name="Date" value="@System.DateTime.Now" style="width:110%" required /><br /><span style="color:red">@TempData["dateError"]</span><br />
+                    <input type="text" name="Phone" placeholder="Contact no." style="width:110%" required /><br /><br />
+                    <input type="text" name="Message" placeholder="Type Message" style="width:110%" required /><br /><br />
+                    @*<input type="hidden" name="CusEmail" value="@Session["cname"].ToString()" />*@
+                    <input type="hidden" name="hId" value="@Model.Id" />
+                    <input type="submit" value="Send Request" id="bt1"  class="btn btn-success"/><br /><span> </span><br />
+
+                </form>
+                        </div>
+                    </div>
+                        
+                    </div>
+
+                         <div id="loginDiv">
+                         <div style="border-style:groove; width:100%; height:30%" class="row">
+                         <div class="col-md-1"></div>
+                         <div class="col-xs-11">
+                        <h2>Login First for Booking</h2>
+                        <form action="~/MarriageHalls/LoginFirst" method="post" >
+                            <input type="email" name="email" placeholder="Email" style="width:110%" required /><br /><br />
+                            <input type="password" name="password" placeholder="Password" style="width:110%" required /><br /><span style="color:red">@TempData["ErrorLoginFirst"]</span><br />
+                            <input type="hidden" name="hid" value="@Model.Id" />
+                            <input type="submit" value="Login" class="btn btn-success" /><br /><span> </span><br />
+                        </form>
+                             </div><br />
+                             
+                    </div>
+                        <br /><input type="button" style="width:90%" value="Click Here For Sign Up Free" class="btn btn-success" id="btnSign2" /><br />
+                    </div>
+
+            <div id="SignDiv">
+                         <div style="border-style:groove; width:100%; height:auto" class="row">
+                         <div class="col-md-1"></div>
+                         <div class="col-xs-11">
+                        <h2>Sign Up</h2>
+                        <form action="~/MarriageHalls/SignupFirst" method="post" >
+                            <input type="text" name="fname" placeholder="First Name" required style="width:110%" /><br /><br />
+                            <input type="text" name="lname" placeholder="Last Name" required style="width:110%" /><br /><br />
+                            <input type="email" name="email" placeholder="Email" style="width:110%" required /><br /><span style="color:red">@TempData["ErrorLoginFirst"]</span><br />
+                            <input type="password" name="password" id="pwd" placeholder="Password" style="width:110%" required /><br /><br />
+                            <input type="password" id="repwd" placeholder="Re-Enter Password" style="width:110%" required /><br /><p id="p2" style="color:red"></p><br />
+                            <input type="text" name="cellno" placeholder="Cell no." style="width:110%" required /><br /><br />
+                            <input type="hidden" name="hid" value="@Model.Id" />
+                            <input type="submit" id="bsign" value="SignUp" class="btn btn-success" /><br /><span> </span><br />
+                        </form>
+                             </div><br />
+                    </div>
+                        
+                    </div>
+
+            </div>
+        </div>
+        
+
+</body>
+</html>

@@ -1,0 +1,147 @@
+﻿@model IEnumerable<MvcApplication4.Models.Country>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <title>Request_Handling</title>
+    <style>
+        .msg {
+            width:100%;
+            height:100%;
+        }
+        #p1 {
+            color:red;
+        }
+        #p2 {
+            color:red;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#btn25").on("click", function () {
+                var val = $("#num").val();
+                var val1 = $("#d1").val();
+                var val2 = $("#d2").val();
+                if (val <= 0) {
+                    $("#p1").text("Please Enter Value");
+                    return false;
+                }
+                else if (val2 <= val1) {
+                    $("#p2").text("please select correctly");
+                    return false;
+                }
+                
+                else {
+                    return true;
+                }
+
+                
+            });
+        });
+        </script>
+    <script>
+        $(document).ready(function () {
+            var v = '@Request.RequestContext.HttpContext.Session["cname"]';
+
+            if (v == "") {
+                $("#LoginReq").show();
+                $("#signReq").hide();
+                $("#dReq").hide();
+            }
+            else {
+                $("#LoginReq").hide();
+                $("#signReq").hide();
+                $("#dReq").show();
+            }
+        });
+        $(document).ready(function () {
+            $("#btnSign").on("click", function () {
+                $("#LoginReq").hide();
+                $("#signReq").show();
+                $("#dReq").hide();
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="dReq">
+    <a href="~/Child/Logout">Logout</a>
+    @*<p>@Session["phone"]</p>
+    <h2>@Session["username"]</h2>*@
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="margin:100px">
+            <h2>Provide Following information</h2> 
+            <form action="~/Child/Request_Handling" method="post"><br /><br /><br />
+                Enter Total Members:<input type="number" id="num" name="members" class="msg" required/><p id="p1"></p><br /><br />
+                <input type="text" placeholder="Enter CNIC" name="cnic" class="msg" required/><br /><br />
+                <select style="width:100%" name="place" required>
+                    <option value="">Select Visiting Place</option>
+                @foreach(var i in Model){
+                    <option>@i.country1</option>
+                }
+                    </select><br /><br />
+                <p style="color:blue">Enter days within you want to go:</p>
+                From<input type="date" name="start_date"  style="width:43%;height:45%;" id="d1" required/>To<input name="end_date" type="date"  id="d2" style="width:45%;height:45%" required/><p id="p2"></p><br /><br />
+                <input type="submit" style="width:30%" class="btn btn-info" value="Send" id="btn25" />
+                <a href="@Url.Action("User_Login","child")" style="width:30%" class="btn btn-info">Cancel</a>
+            </form>
+        </div>
+        <div class="col-sm-4"></div>
+    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div id="LoginReq" class="offset6 span6 well">
+                    
+                <h1>Login</h1>
+                <form action="~/Child/LoginTour" method="post">
+                    <input type="hidden" name="TourOrgName" value="@Model.Last().Org_name" />
+        <input type="email" name="email" placeholder="Email" class="set" /><br /><br />
+        <input type="password" name="password" placeholder="Password" class="set" /><br /><span style="color:red">@TempData["ErrTourLogin"]</span><br />
+                    <input type="submit" value="Login" /><br /><br />
+                    </form>
+                <input type="button" value="Click Here For Sign Up Free" id="btnSign"  class="btn btn-success" /><br />
+    </div>
+            </div>
+        <div class="col-md-4"></div>
+        </div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div id="signReq" class="offset6 span6 well">
+                <h1>SignUp</h1><br />
+                <form>
+                <input type="text" name="fname" placeholder="First name" class="set" /><br /><br />
+                <input type="text" name="lname" placeholder="Last name" class="set" /><br /><br />
+                <input type="email" name="email" placeholder="Email" class="set" /><br /><br />
+                <input type="password" name="password" placeholder="Password" class="set" /><br /><br />
+                <input type="text" name="cellno" placeholder="Cell no." class="set" /><br /><br />
+                <input type="submit" value="SignUp" class="btn btn-success" />
+                    </form>
+    </div>
+            </div>
+        <div class="col-md-4"></div>
+        </div>
+</body>
+</html>
+<style>
+    .set {
+        width:100%;
+        
+    }
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>

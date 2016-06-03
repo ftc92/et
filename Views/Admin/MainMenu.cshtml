@@ -1,0 +1,139 @@
+﻿@model IEnumerable<MvcApplication4.Models.Organizer>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MainMenu</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-7" style="margin-left:3%">
+            <h1>Pending Requests</h1><br />
+            <h3>Shopping Organizer:</h3>
+            @if (ViewBag.shopCount == 0)
+            {
+                <p>No any Shopping organizer send new Request</p>
+            }
+            else
+            {
+            <table border="1">
+                <tr>
+                    <td><label>Shop Name</label></td>
+                    <td><label>Category</label></td>
+                    <td><label>Email</label></td>
+                    <td><label>Password</label></td>
+                    <td><label>Address</label></td>
+                    <td><label>Phone</label></td>
+                    <td><label>Request</label></td>
+                </tr>
+                @foreach (var item in ViewBag.shopList)
+                {
+                    <tr>
+                        <td>@item.shopName</td>
+                        <td>@item.category</td>
+                        <td>@item.username</td>
+                        <td>@item.password</td>
+                        <td>@item.address</td>
+                        <td>@item.phone</td>
+                        <td><a href="~/Admin/shopConfirm?id=@item.Id">Confirm</a>
+                            <br />
+                            <a href="~/Admin/shopDelete?id=@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            }
+           <br /> <hr style="height:2px; background-color:black" /><br />
+            <h3>Marriage Hall Organizers</h3>
+            @if (ViewBag.hallCount == 0)
+            {
+                <p>No any marriage hall organizer send new Request</p>
+            }
+            else
+            {
+            <table border="1">
+                <tr>
+                    <td><label>Org Name</label></td>
+                    <td><label>Email</label></td>
+                    <td><label>Password</label></td>
+                    <td><label>Address</label></td>
+                    <td><label>Phone</label></td>
+                    <td><label>Request</label></td>
+                </tr>
+                @foreach (var item in ViewBag.hallList)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.Password</td>
+                        <td>@item.Address</td>
+                        <td>@item.Phone</td>
+                        <td><a href="~/Admin/hallConfirm?id=@item.Id">Confirm</a>
+                            <br />
+                            <a href="~/Admin/hallDelete?id=@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            }
+           <br /> <hr style="height:2px; background-color:black" /><br />
+            <h3>Tour Organizers</h3>
+            @if (Model.Count() == 0)
+            {
+                <p>No any Tour organizer send new Request</p>
+            }
+            else
+            {
+            <table border="1">
+                <tr>
+                    <td><label>Org. Name</label></td>
+                    <td><label>Email/Phone</label></td>
+                    <td><label>Password</label></td>
+                    <td><label>Address</label></td>
+                    <td><label>Request</label></td>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.name</td>
+                        <td>@item.phNo</td>
+                        <td>@item.password</td>
+                        <td>@item.address</td>
+                        <td><a href="~/Admin/tourConfirm?id=@item.Id">Confirm</a>
+                            <br />
+                            <a href="~/Admin/tourDelete?id=@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            }
+           <br />
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <h1>Menu</h1><br />
+            <h3>Confirmed Organizers</h3>
+            <a href="~/Admin/shopConfirmed">Shopping Organizers</a><br />
+            <a href="~/Admin/hallConfirmed">Marraige hall Organizers</a><br />
+            <a href="~/Admin/tourConfirmed">Tour Organizers</a><br />
+            <hr style="height:2px; background-color:black" /><br />
+            
+            <a href="~/Admin/AllProfiles">see all users Profiles</a>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "ManageAccount";
+}
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+<div class="row">
+    <div class="col-sm-4"></div>
+        <div class="col-sm-4" id="dv">
+            
+                
+            
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class=" offset6 span6 well">
+                    <h2>Update Account</h2>
+            <form action="~/Child/Changings" data-toggle="tooltip" title="You can partialy Update Information" method="post">
+                <input type="text" placeholder="Enter new phone or email" class="txt" name="phone"  /><br /><br />
+                <input type="password" placeholder="Enter Previous Password" class="txt" name="previous" required /><br /><br /> 
+                <input type="password" placeholder="Enter new Password" class="txt" name="password"  /><br /><br />
+                <input type="submit" class="btn btn-success" style="width:25%" id="b1" />
+                <a href="~/Child/User_Login" class="btn btn-success">Continue</a>
+            </form>
+                        </div>
+                    </div>
+                </div>
+    </div>
+    <style>
+        .txt {
+            width:100%;
+        }
+        .cls {
+            margin-top:20%;
+        }
+        #dv {
+            margin-top:10%;
+        }
+    </style>
+</div>

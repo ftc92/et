@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AddHall</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#bt1").on("click", function () {
+                var f = true;
+                var v = $("#c1").val();
+                if (v < 1) {
+                    f = false;
+                    alert("Please Enter correct capacity of hall");
+                }
+                return f;
+            });
+        });
+    </script>
+    <style>
+        .set {
+            width:100%;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2>Add Your Hall</h2><br />
+            <form method="post" action="~/HallOrg/AddHall" enctype="multipart/form-data">
+                <input type="file" name="File" required value="choose image" /><br /><br />
+                <input type="text" name="Name" required placeholder="Hall Name" class="set" /><br /><br />
+                Capacity: <input id="c1" type="number" name="Capacity" required /><br /><br />
+                <span>Status </span><select name="Status">
+                    <option value="Available">Available</option>
+                    <option value="Booked">Booked</option>
+                </select><br /><br />
+                <input type="text" name="Address" required placeholder="Address" class="set" /><br /><br />
+                <input type="text" name="Phone" required placeholder="Contact No." class="set" /><br /><br />
+                <input type="submit" value="Add" id="bt1" />
+            </form>
+            @*<a href="~/HallOrg/OrganizerData?"><input type="button" value="Cancel" /></a>*@
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+</body>
+</html>

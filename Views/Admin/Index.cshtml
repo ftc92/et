@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-4"></div>
+        
+        <div class="col-md-4" style="border-style:groove; height:auto">
+            <h2>Admin Login</h2><br />
+            <form action="~/Admin/Login" method="post">
+                <input type="email" name="Email" placeholder="Email" style="width:90%" /><br /><br />
+                <input type="password" name="Password" placeholder="Password" style="width:90%" /><br /><span style="color:red">@TempData["LoginErr"]</span><br />
+                <input type="submit" value="Login" class="btn btn-success" /><br /><span> </span>
+            </form>
+            <br /><span> </span>
+        </div>
+        <div class="col-xs-4"></div>
+    </div>
+</body>
+</html>

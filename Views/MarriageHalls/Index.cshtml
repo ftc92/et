@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MvcApplication4.Models.SubHall>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <style>
+        .img {
+            width:300px;
+            height:300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            @if (Model.Count() == 0)
+            {
+                <h3>Sorry, we have no ads for Marriage Halls Now,</h3>
+                <h3>Please try Later</h3>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <div class="row">
+                    <div style="float: left; width: 300px; height: 300px; margin: 10px 10px 10px 10px;">
+                    <img src="@Url.Content(item.Image)" class="img" />
+                    </div>
+                    <h1>@item.Name</h1><br />
+                    <span>Capacity: </span><span>@item.Capacity</span><br /><br />
+                    <span>Address: </span><span>@item.Address</span><br /><br />
+                    <span>Contact: </span><span>@item.Phone</span><br /><br />
+                    <a href="~/MarriageHalls/Detail?id=@item.OrgId">For more halls of this Org/Details/Booking</a><br />
+                    </div><br />
+                    <hr style="height:2px; background-color:black" /><br />
+                }
+            }
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+</body>
+</html>

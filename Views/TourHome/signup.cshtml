@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    
+    <title>signup</title>
+    <script>
+        $(document).ready(function () {
+            $("#b1").on("click", function () {
+                var val = $("#txt").val();
+                
+                
+                
+            });
+        });
+    </script>
+</head>
+<body>
+    <a href="@Url.Action("Logout", "TourHome")">Logout</a>
+    @*<h1>@Session["phNo"]</h1>
+    <p>@Session["name"]</p>*@
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" ><h2>Create Profile</h2><br /><br /><br />
+        <form action="~/TourHome/AfterSignup" method="post" enctype="multipart/form-data">
+            <label for="file">Upload image</label>
+            <input type="file" id="file" name="File" required/><br /><br />
+            <input type="text" placeholder="Enter Company name" name="company" id="txt2" required /><br /><br />
+            <input type="submit" class="btn btn-info" value="Add Country" id="b1"/>
+        </form>
+    </div>
+    <div class="col-sm-4"></div>
+</body>
+</html>

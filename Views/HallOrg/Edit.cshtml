@@ -1,0 +1,47 @@
+﻿@model MvcApplication4.Models.SubHall
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <style>
+        .set {
+            width:100%;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2>Edit Your Hall</h2><br />
+            <form action="~/HallOrg/Edit" method="post" >
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="Image" value="@Model.Image" />
+                Hall Name: <input type="text" name="Name" value="@Model.Name" required class="set" /><br /><br />
+                Hall Capacity: <input type="number" name="Capacity" value="@Model.Capacity" required class="set" /><br /><br />
+                <span>Status</span><select name="Status">
+                    <option value="Avalaible">Available</option>
+                    <option value="Booked">Booked</option>
+                                   </select><br /><br />
+                Address: <input type="text" name="Address" value="@Model.Address" class="set" required /><br /><br />
+                Phone: <input type="text" name="Phone" value="@Model.Phone" class="set" required /><br /><br />
+                <input type="hidden" name="OrgId" value="@Model.OrgId" />
+                       <input type="submit" value="Update" />
+            </form><br />
+            <a href="~/HallOrg/OrganizerData?orgid=@Model.OrgId"><input type="button" value="Cancel" /></a>
+        </div>
+        <div class="col-xs-3"></div>
+    </div>
+</body>
+</html>

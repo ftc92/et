@@ -1,0 +1,116 @@
+﻿@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <title>Index</title>
+    <script>
+        $(document).ready(function () {
+            $("#b1").on("click", function () {
+                var flag=true;
+                var val = $("#txt1").val();
+                var val1 = $("#txt2").val();
+                var val2 = $("#txt3").val();
+                
+                if (val != val1) {
+
+                    $("#p1").text("password not matches:");
+                    flag = false;
+                    return flag;
+                }
+                else {
+                    $.getJSON("/Home/Verify?phone=" + val2, function (d) {
+                        alert(d);
+                        if (d) {
+                            $("#p2").text("already exists");
+                            
+                            
+                        }
+                        
+                        
+                    });
+                    return flag;
+                }
+            });
+        });
+        $(document).ready(function () {
+            $("#b2").on("click", function () {
+                var phone = $("#txt").val();
+                var password = $("#pwd").val();
+                var flag=false;
+                $.getJSON("/Home/CheckUser?un=" + phone + "&password=" + password, function (d) {
+                    if (d) {
+                        flag = true;
+                        
+                        
+                    }
+                    else {
+                        
+                        flag = false;
+                        
+                        
+                        $("#ck").text("password or phone number wrong");
+                    }
+                });
+                flag = $("#chk").val();
+                
+                return flag;
+            });
+        });
+           
+        
+    </script>
+    <script type="text/javascript">
+        function DisableBackButton() {
+            window.history.forward()
+        }
+        DisableBackButton();
+        window.onload = DisableBackButton;
+        window.onpageshow = function (evt) { if (evt.persisted) DisableBackButton() }
+        window.onunload = function () { void (0) }
+ </script>
+
+</head>
+<body>
+    <p id="chk"></p>
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-4">
+            <br /><br /><br />
+        <h2>Create Account</h2>
+        <br /><br /><br />
+            <form method="post" action="~/TourHome/signup">
+               <input type="text" name="name" placeholder="Enter-name" style="width:100%;text-align:start" required /><br /><br />
+            <input type="password" name="password" placeholder="Enter-password" id="txt1" style="width:100%;text-align:start" required /><br /><br />
+            <input type="password" placeholder="Re-Enter-Password" id="txt2" style="width:100%;text-align:start" required /><p style="color:red" id="p1"></p><br />
+            <input type="text" name="phNo" placeholder="Enter-Phone-Number" id="txt3" style="width:100%;text-align:start" required /><p style="color:red" id="p2"></p><br /><br />
+            <input type="text" name="address" placeholder="Enter-Address" style="width:100%;text-align:start" required /><br /><br />
+                <input type="text" name="city" placeholder="Enter Country or city" style="width:100%;text-align:start" required /><br /><br />
+                       <input type="submit" class="btn btn-info" style="width:30%" value="Signup" id="b1" /> 
+            </form>
+        </div>
+        <div class="col-sm-5">
+              <br /><br /><br />
+                <h2>Login</h2>
+                <br /><br /><br />
+            <form action="~/TourHome/Login"  method="post">
+                <input type="text" id="txt" name="phNo" placeholder="Enter phone number" style="width:50%" required /><br /><br />
+                <input type="password" id="pwd" name="password" placeholder="Enter Password" style="width:50%" required/><br /><br />
+                <p id="ck" style="color:red"></p>
+                <input type="submit" class="btn btn-info" style="width:20%" id="b2" value="Login"/>
+            </form>
+            
+        </div>
+        
+    </div>
+</body>
+</html>

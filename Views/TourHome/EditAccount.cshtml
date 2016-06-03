@@ -1,0 +1,44 @@
+﻿@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+    }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    <title>EditAccount</title>
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
+    <style>
+        .setting {
+            width:100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="margin-top:50px;">
+            <form action="~/TourHome/EditAccount" method="post" class="setting">
+                <br /><br /><br />
+                @Html.Label("Change Your Account Here")<br /><br /><br />
+                
+                <input type="text" placeholder="Enter new Phone Number" style="width:90%" name="phNo" data-toggle="tooltip" title="enter new email or phone only if it is required to change otherwise leave it empty"/><br /><br />
+                <input type="text" placeholder="Enter Previous Password" style="width:90%" name="newpwd" required /><br /><br />
+                <input type="text" placeholder="Enter New Password" style="width:90%" name="password" data-toggle="tooltip" title="enter new email or phone only if it is required to change otherwise leave it empty" /><br /><br />
+                <input type="submit" class="btn btn-info" style="width:30%" value="Change" id="b1" />
+                <a href="@Url.Action("Login","TourHome")" style="width:30%" class="btn btn-info">Go Back</a>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

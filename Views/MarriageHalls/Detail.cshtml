@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MvcApplication4.Models.SubHall>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Detail</title>
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+</head>
+<body>
+    <div class="row" >
+        <div class="col-md-3">
+            <a href="~/MarriageHalls/Index"><-Back to List</a>
+        </div>
+        <div class="col-md-6">
+            @if (Model.Count() == 0)
+            {
+                <h4>This hall has no any sub hall, it has only one main hall</h4>
+            }
+            else
+            {
+                <h1 style="font-weight:900">@ViewBag.MainName</h1><br />
+                var count = 1;
+                foreach (var item in Model)
+                {
+                    <h2>@count- @item.Name</h2>
+                    <img src="@Url.Content(item.Image)" style="width:200px; height:200px" /><br />
+                    <span style="font-weight:800">Capacity: </span><span>@item.Capacity peoples</span><br />
+                    <span style="font-weight:800">Address: </span><span>@item.Address</span><br />
+                    <span style="font-weight:800">Contact: </span><span>@item.Phone</span><br />
+                    <span style="font-weight:800">Status: </span> @item.Status <br />
+                    <a href="~/MarriageHalls/DetailSubHall?id=@item.Id">For Hall's Videos, Promotions & Booking</a><br />
+                    <hr style="height:2px;background-color:black" /><br />
+                    {count++;}
+                }
+                
+            }
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</body>
+</html>

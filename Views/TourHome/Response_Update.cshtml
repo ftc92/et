@@ -1,0 +1,48 @@
+﻿@*@using tourmanagment.Controllers*@
+@model MvcApplication4.Models.ResponseRequest
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+    }
+<meta name="viewport" content="width=device-width" />
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Content/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#b1").on("click", function () {
+            var val = $("#prices1").val();
+            var val1 = $("#prices2").val();
+            if (val != val1) {
+                $("#p1").text("Please enter same prices");
+                return false;
+            }
+            else {
+                return true;
+            }
+        });
+    });
+</script>
+<style>
+    #p1 {
+        color:red;
+    }
+</style>
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="margin-top:5%">
+        <div class="offset6 span6 well">
+            <form action="~/TourHome/Response_Update" method="post">
+                <input  placeholder="enter required conveyance name" name="conveyance" value="@Model.conveyance" style="width:100%" required><br /><br />
+                <input placeholder="Enter Total Ticket Prices" id="prices1" name="total_prices" value="@Model.total_prices" style="width:100%" required/><br /><br />
+                <input  placeholder="Verify Total Ticket prices again" id="prices2" style="width:100%" data-toggle="tooltip" title="enter same price as above to save your time" required/><p id="p1"></p><br /><br />
+                <textarea aria-valuetext="@Model.description" placeholder="Give a brief overview of your service and meeting plan"  name="description" contenteditable="false" cols="20" rows="5" style="width:100%;" required></textarea><br /><br />
+                <input type="submit" class="btn btn-danger" data-toggle="tooltip" title="Update Reponse to requests you recieved" value="Update Response" id="b1" />
+                
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-4"></div>
+</div>

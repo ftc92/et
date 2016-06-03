@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MvcApplication4.Models.User>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AllProfiles</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+            <h1>Tour Organizers</h1>
+            @if (Model.Count() == 0)
+            {
+                <p>No any user Profile available Now </p>
+            }
+            else
+            {
+            <table border="1" style="width:100%">
+                <tr>
+                    <td><label>Picture</label></td>
+                    <td><label>Name</label></td>
+                    <td><label>Email</label></td>
+                    <td><label>Gender</label></td>
+                    <td><label>Age</label></td>
+                    <td><label>Caste</label></td>
+                    <td><label>Qualification</label></td>
+                    <td><label>Address</label></td>
+                    <td><label>Work</label></td>
+                    <td><label>Income</label></td>
+                    <td><label>Cell No.</label></td>
+                    <td><label>Action</label></td>
+                    
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td><img src="@Url.Content(item.Image)" style="width:170px;height:170px" /></td>
+                        <td>@item.Name</td>
+                        <td>@item.email</td>
+                        <td>@item.gender</td>
+                        <td>@item.age</td>
+                        <td>@item.cast</td>
+                        <td>@item.qualification</td>
+                        <td>@item.address</td>
+                        <td>@item.work</td>
+                        <td>@item.income<span> .PKR</span></td>
+                        <td>@item.cell</td>
+                        <td>
+                            <a href="~/Admin/profileDelete?id=@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </table>
+            }
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</body>
+</html>
